@@ -1,0 +1,2384 @@
+{
+	"info": {
+		"_postman_id": "da2f3f7e-ad5c-4878-b48e-9f925551ccfc",
+		"name": "ServeRest",
+		"description": "**O ServeRest é uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.**\n\n**Não deixe de seguir o [autor do projeto](https://github.com/PauloGoncalvesBH) e deixar um star no repositório: [github.com/ServeRest/ServeRest](https://github.com/ServeRest/ServeRest)**\n\nEssa página documenta todas as rotas e como acessá-las. Para mais detalhes do ServeRest (como executar localmente utilizando Docker ou NPM, alterar timeout de autenticação, etc) acesse [o repositório do ServeRest](https://github.com/serverest/serverest).\n\nEstá utilizando Postman? Importe o [JSON do Swagger](https://raw.githubusercontent.com/ServeRest/ServeRest/trunk/docs/swagger.json) para ter acesso às collections.\n\nVai fazer teste de carga? Leia a seção '[Teste de Carga](https://github.com/ServeRest/ServeRest#teste-de-carga)'.\n\n\nMuito obrigado ♥ a todos que apoiam o projeto [financeiramente](https://opencollective.com/serverest#section-contributors) ou [com código, ideias e divulgação](https://github.com/ServeRest/ServeRest#contribuidores-), graças a vocês **mais de R$ 2000,00 foram doados para a ONG [Todas as letras](https://todasasletras.org/)** até o momento.\n\nO ServeRest possui um front, com status em beta, não deixe de conhecer: [front.serverest.dev](https://front.serverest.dev).\n\nPrecisa de apoio? [Abra uma issue](https://github.com/ServeRest/ServeRest/issues) ou contate o mantenedor do projeto:\n\n\nContact Support:\n Name: Paulo Gonçalves",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Realizar login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49d258e3-f344-4936-b339-ebe731ca516c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e5fb7c04-fee9-4900-8bf6-f9c6173d92be",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"teste@qa.com\",\n  \"password\": \"teste\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://serverest.dev/login",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "A duração do token retornado em authorization é de 600 segundos (10 minutos). Caso esteja expirado irá receber status code 401 (Unauthorized).\n"
+					},
+					"response": [
+						{
+							"id": "8ed99847-d172-4593-b7ec-dbb5d821a36c",
+							"name": "Login realizado com sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"fulano@qa.com\",\n\t\"password\": \"teste\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Login realizado com sucesso\",\n\t\"authorization\": \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNTg5NzU4NzQ2LCJleHAiOjE1ODk3Njg3NDZ9.B6TASHV8k9xBerz4NSeFBlAZGSDhZlqESt767M0567I\"\n}"
+						},
+						{
+							"id": "175e2560-f2dd-419a-84d4-345865f9dbb1",
+							"name": "E-mail e/ou senha inválidos",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"fulano@qa.com\",\n\t\"password\": \"teste\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Email e/ou senha inválidos\"\n}"
+						}
+					]
+				}
+			],
+			"id": "c1130eab-e547-42c5-b038-36265dedcd96",
+			"description": "Autentique o seu usuário para montar um carrinho e, se for administrador, gerenciar os produtos"
+		},
+		{
+			"name": "Usuários",
+			"item": [
+				{
+					"name": "Listar usuários cadastrados",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9e8bf91f-12be-4bc9-b26b-7bac11018ab5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"\")"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6650fac0-6d7e-4935-81db-896df3511d2c",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios?_id=sit eiusmod pariatur non&nome=sit eiusmod pariatur non&email=sit eiusmod pariatur non&password=sit eiusmod pariatur non&administrador=false",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "sit eiusmod pariatur non"
+								},
+								{
+									"key": "nome",
+									"value": "sit eiusmod pariatur non"
+								},
+								{
+									"key": "email",
+									"value": "sit eiusmod pariatur non"
+								},
+								{
+									"key": "password",
+									"value": "sit eiusmod pariatur non"
+								},
+								{
+									"key": "administrador",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "97c126c5-6aa8-4c34-a6f5-1d539e3221f7",
+							"name": "Lista de usuários",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios?_id=sit eiusmod pariatur non&nome=sit eiusmod pariatur non&email=sit eiusmod pariatur non&password=sit eiusmod pariatur non&administrador=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "nome",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "email",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "password",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "administrador",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"quantidade\": 1,\n\t\"usuarios\": [\n\t\t{\n\t\t\t\"nome\": \"Fulano da Silva\",\n\t\t\t\"email\": \"beltrano@qa.com.br\",\n\t\t\t\"password\": \"teste\",\n\t\t\t\"administrador\": \"true\",\n\t\t\t\"_id\": \"0uxuPY0cbmQhpEz1\"\n\t\t},\n\t\t{\n\t\t\t\"nome\": \"Fulano da Silva\",\n\t\t\t\"email\": \"beltrano@qa.com.br\",\n\t\t\t\"password\": \"teste\",\n\t\t\t\"administrador\": \"true\",\n\t\t\t\"_id\": \"0uxuPY0cbmQhpEz1\"\n\t\t}\n\t]\n}"
+						}
+					]
+				},
+				{
+					"name": "Cadastrar usuário",
+					"id": "a54ddc17-7eef-4ce3-99cb-799fceb199cc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNTg5NzU4NzQ2LCJleHAiOjE1ODk3Njg3NDZ9.B6TASHV8k9xBerz4NSeFBlAZGSDhZlqESt767M0567I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Fulano da Silva\",\n\t\"email\": \"beltranoTestes@qa.com.br\",\n\t\"password\": \"teste\",\n\t\"administrador\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Não é permitido cadastrar usuário com email já utilizado"
+					},
+					"response": [
+						{
+							"id": "6ce600ad-370b-46b7-a7a3-700e665d285c",
+							"name": "Cadastro com sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Cadastro realizado com sucesso\",\n\t\"_id\": \"jogfODIlXsqxNFS2\"\n}"
+						},
+						{
+							"id": "92fdfaa7-65fe-4229-86b8-cef6512e900d",
+							"name": "E-mail já cadastrado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Este email já está sendo usado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar usuário por ID",
+					"id": "50e9a4b0-04cf-4942-b960-fd4b27766172",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/:_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								":_id"
+							],
+							"variable": [
+								{
+									"key": "_id",
+									"value": "0uxuPY0cbmQhpEz1",
+									"description": "0uxuPY0cbmQhpEz1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "eda9d51f-56db-4648-bd96-685abd63d954",
+							"name": "Usuário encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do usuário"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"nome\": \"Fulano da Silva\",\n\t\"email\": \"beltrano@qa.com.br\",\n\t\"password\": \"teste\",\n\t\"administrador\": \"true\",\n\t\"_id\": \"0uxuPY0cbmQhpEz1\"\n}"
+						},
+						{
+							"id": "c44f47d3-7ba7-4907-9c6b-cd61c5aa675d",
+							"name": "Usuário não encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do usuário"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Usuário não encontrado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Excluir usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bd151652-c939-42b6-aa66-5aa94fade6f0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var resposta = pm.response.json();\r",
+									"pm.test(\"Deve ser: Registro excluído com sucesso\", function() {\r",
+									"    pm.expect(resposta.message).to.eql(\"Registro excluído com sucesso\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "38d47fe4-6711-494d-bfda-b3c54e04d45c",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/:_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								":_id"
+							],
+							"variable": [
+								{
+									"id": "f54d8954-8982-4f44-979c-45a04e091c84",
+									"key": "_id",
+									"value": "0uxuPY0cbmQhpEz1",
+									"description": "(Required) ID do usuário"
+								}
+							]
+						},
+						"description": "Não é permitido excluir usuário com carrinho."
+					},
+					"response": [
+						{
+							"id": "b355402b-bd84-4758-a6e9-b16273d28ccf",
+							"name": "Registro excluído com sucesso | Nenhum registro excluído",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do usuário"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Registro excluído com sucesso | Nenhum registro excluído\"\n}"
+						},
+						{
+							"id": "11dd7e33-c508-4914-964a-1d13ef6c48a4",
+							"name": "Usuário com carrinho cadastrado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do usuário"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Não é permitido excluir usuário com carrinho cadastrado\",\n\t\"idCarrinho\": \"qbMqntef4iTOwWfg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Editar usuário",
+					"id": "e2d46480-5f6a-4e79-b7b6-2888113bfd2d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Fulano da Silva\",\n\t\"email\": \"beltrano@qa.com.br\",\n\t\"password\": \"teste\",\n\t\"administrador\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/:_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								":_id"
+							],
+							"variable": [
+								{
+									"id": "8a29b2a7-9bdd-451e-b219-e8dae16f4e7c",
+									"key": "_id",
+									"value": "0uxuPY0cbmQhpEz1",
+									"description": "(Required) ID do usuário"
+								}
+							]
+						},
+						"description": "Não é permitido cadastrar usuário com email já utilizado.\nCaso não seja encontrado usuário com o ID informado é realizado novo cadastro ao invés de alteração.\n"
+					},
+					"response": [
+						{
+							"id": "fa6bf413-041d-40e5-a194-7aa0c1ef765e",
+							"name": "Alterado com sucesso",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do usuário"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Registro alterado com sucesso\"\n}"
+						},
+						{
+							"id": "e2940a7e-0eb5-4704-b2e3-4d1f5193a063",
+							"name": "Cadastro com sucesso",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do usuário"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Cadastro realizado com sucesso\",\n\t\"_id\": \"jogfODIlXsqxNFS2\"\n}"
+						},
+						{
+							"id": "90660a85-959a-40d8-aa9e-07cda436b634",
+							"name": "E-mail já cadastrado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/usuarios/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"usuarios",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do usuário"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Este email já está sendo usado\"\n}"
+						}
+					]
+				}
+			],
+			"id": "086a273f-aa6d-4d65-9c63-87a72e1ce0d6",
+			"description": "Gerencie os usuários, consulte dados para login e cadastre administrador"
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Listar produtos cadastrados",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "51edc42c-1c7f-4c7a-84fc-bedf1f73a758",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "ac170719-fcee-4d9c-99d7-3e66af422c88",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/produtos?_id=123456&nome=Teste&preco=45&descricao=TestePratico&quantidade=50",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "123456"
+								},
+								{
+									"key": "nome",
+									"value": "Teste"
+								},
+								{
+									"key": "preco",
+									"value": "45"
+								},
+								{
+									"key": "descricao",
+									"value": "TestePratico"
+								},
+								{
+									"key": "quantidade",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "405afd19-47ad-417f-94ea-aa06d10761d5",
+							"name": "Lista de produtos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/produtos?_id=sit eiusmod pariatur non&nome=sit eiusmod pariatur non&preco=87699773&descricao=sit eiusmod pariatur non&quantidade=86889108",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "nome",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "preco",
+											"value": "87699773"
+										},
+										{
+											"key": "descricao",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "quantidade",
+											"value": "86889108"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"quantidade\": 2,\n\t\"usuarios\": [\n\t\t{\n\t\t\t\"nome\": \"Logitech MX Vertical\",\n\t\t\t\"preco\": 470,\n\t\t\t\"descricao\": \"Mouse\",\n\t\t\t\"quantidade\": 381,\n\t\t\t\"_id\": \"BeeJh5lz3k6kSIzA\"\n\t\t},\n\t\t{\n\t\t\t\"nome\": \"Samsung 60 polegadas\",\n\t\t\t\"preco\": 5240,\n\t\t\t\"descricao\": \"TV\",\n\t\t\t\"quantidade\": 49977,\n\t\t\t\"_id\": \"K6leHdftCeOJj8BJ\"\n\t\t}\n\t]\n}"
+						}
+					]
+				},
+				{
+					"name": "Cadastrar produto",
+					"id": "de17fe8a-a336-44e0-b853-22a8237003eb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nome\": \"Televisao\",\n  \"preco\": 540,\n  \"descricao\": \"Eletrodomestico\",\n  \"quantidade\": 50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/produtos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos"
+							]
+						},
+						"description": "Não é permitido cadastrar produto com nome já utilizado"
+					},
+					"response": [
+						{
+							"id": "c161dc73-c901-4699-b0d9-1b670f08a410",
+							"name": "Cadastro com sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Cadastro realizado com sucesso\",\n\t\"_id\": \"jogfODIlXsqxNFS2\"\n}"
+						},
+						{
+							"id": "f2d93b3f-514d-4d79-9fa9-45c3e6b68c4c",
+							"name": "Já existe produto com esse nome",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Já existe produto com esse nome\"\n}"
+						},
+						{
+							"id": "91219fd4-5309-4601-b2de-b6c32b718b5c",
+							"name": "Token ausente, inválido ou expirado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+						},
+						{
+							"id": "3076bce7-bf33-4727-8c1d-e2993f3600f1",
+							"name": "Rota exclusiva para administradores (`administrador = true`)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos"
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Rota exclusiva para administradores\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar produto por ID",
+					"id": "bbc5f52b-b411-4cf0-8778-979aee9b934d",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/produtos/:_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos",
+								":_id"
+							],
+							"variable": [
+								{
+									"id": "77b5395b-4cc5-4ed4-9243-ddd4b867b79f",
+									"key": "_id",
+									"value": "BeeJh5lz3k6kSIzA",
+									"description": "(Required) ID do produto"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "5c9240b4-e818-4e15-9748-12768e3dc333",
+							"name": "Produto encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "BeeJh5lz3k6kSIzA",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"nome\": \"Logitech MX Vertical\",\n\t\"preco\": 470,\n\t\"descricao\": \"Mouse\",\n\t\"quantidade\": 381,\n\t\"_id\": \"BeeJh5lz3k6kSIzA\"\n}"
+						},
+						{
+							"id": "45e92fcf-07b7-4ed9-a38c-d3cfdc1ae87f",
+							"name": "Produto não encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "BeeJh5lz3k6kSIzA",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Produto não encontrado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Excluir produto",
+					"id": "1346abae-761b-4dd2-850a-c54033f741d6",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/produtos/:_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos",
+								":_id"
+							],
+							"variable": [
+								{
+									"id": "d6b46925-c5f0-49e0-991e-9e176ebed55f",
+									"key": "_id",
+									"value": "0uxuPY0cbmQhpEz1",
+									"description": "(Required) ID do produto"
+								}
+							]
+						},
+						"description": "Não é permitido excluir produto que faz parte de carrinho."
+					},
+					"response": [
+						{
+							"id": "6bb0d619-8d27-494c-8ae5-62da5fddab18",
+							"name": "Registro excluído com sucesso | Nenhum registro excluído",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Registro excluído com sucesso | Nenhum registro excluído\"\n}"
+						},
+						{
+							"id": "56613c07-44c1-4e59-a47c-ac5eb29eda86",
+							"name": "Produto faz parte de carrinho",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Não é permitido excluir produto que faz parte de carrinho\",\n\t\"idCarrinho\": [\n\t\t\"qbMqntef4iTOwWfg, yILJY1eaAUC6hyRc\",\n\t\t\"qbMqntef4iTOwWfg, yILJY1eaAUC6hyRc\"\n\t]\n}"
+						},
+						{
+							"id": "5d0dfa99-476d-4552-a40f-02ef35ac1187",
+							"name": "Token ausente, inválido ou expirado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+						},
+						{
+							"id": "5cdfedaf-b83b-4d60-911e-f142fd827ef5",
+							"name": "Rota exclusiva para administradores (`administrador = true`)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Rota exclusiva para administradores\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Editar produto",
+					"id": "f15604bc-e171-4268-80b8-2924d57e0d9a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"Logitech MX Vertical\",\n\t\"preco\": 470,\n\t\"descricao\": \"Mouse\",\n\t\"quantidade\": 381\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/produtos/:_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"produtos",
+								":_id"
+							],
+							"variable": [
+								{
+									"id": "100a26f1-cc82-4071-9907-847ee0e7a9a6",
+									"key": "_id",
+									"value": "0uxuPY0cbmQhpEz1",
+									"description": "(Required) ID do produto"
+								}
+							]
+						},
+						"description": "Não é permitido cadastrar produto com nome já utilizado.\nCaso não seja encontrado usuário com o ID informado é realizado novo cadastro ao invés de alteração.\n"
+					},
+					"response": [
+						{
+							"id": "7c989242-09c7-43a5-b68e-3b27b7d9a249",
+							"name": "Alterado com sucesso",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Registro alterado com sucesso\"\n}"
+						},
+						{
+							"id": "4b3a7278-b31c-4c47-8171-693f6132abe5",
+							"name": "Cadastro com sucesso",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Cadastro realizado com sucesso\",\n\t\"_id\": \"jogfODIlXsqxNFS2\"\n}"
+						},
+						{
+							"id": "7e198636-95ed-488b-b520-ea2cd968fdd3",
+							"name": "Já existe produto com esse nome",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Já existe produto com esse nome\"\n}"
+						},
+						{
+							"id": "612fe697-5646-4de9-adb3-641c21193e1e",
+							"name": "Token ausente, inválido ou expirado",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+						},
+						{
+							"id": "a2d2fbfa-2b0e-4fab-b3a9-0afc236c8560",
+							"name": "Rota exclusiva para administradores (`administrador = true`)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/produtos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"produtos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "0uxuPY0cbmQhpEz1",
+											"description": "(Required) ID do produto"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Rota exclusiva para administradores\"\n}"
+						}
+					]
+				}
+			],
+			"id": "353b088c-660f-4e42-8e98-1ccb2985021c",
+			"description": "Consulte produtos cadastrados ou, como administrador, gerencie os produtos da loja"
+		},
+		{
+			"name": "Carrinhos",
+			"item": [
+				{
+					"name": "Listar carrinhos cadastrados",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1869de8a-fe64-409e-b298-ca3371abfb59",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "9aef2f8f-b3e1-4945-9e2f-b94fa2072b5a",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/carrinhos?_id=qbMqntef4iTOwWfg&precoTotal=6180&quantidadeTotal=3&idUsuario=oUb7aGkMtSEPf6BZ",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carrinhos"
+							],
+							"query": [
+								{
+									"key": "_id",
+									"value": "qbMqntef4iTOwWfg"
+								},
+								{
+									"key": "precoTotal",
+									"value": "6180"
+								},
+								{
+									"key": "quantidadeTotal",
+									"value": "3"
+								},
+								{
+									"key": "idUsuario",
+									"value": "oUb7aGkMtSEPf6BZ"
+								}
+							]
+						},
+						"description": "Os carrinhos retornados são únicos por usuário"
+					},
+					"response": [
+						{
+							"id": "9c0bdfe7-7c44-43b0-ab9c-4f733deadf5f",
+							"name": "Lista de carrinhos",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos?_id=sit eiusmod pariatur non&precoTotal=87699773&quantidadeTotal=86889108&idUsuario=sit eiusmod pariatur non",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									],
+									"query": [
+										{
+											"key": "_id",
+											"value": "sit eiusmod pariatur non"
+										},
+										{
+											"key": "precoTotal",
+											"value": "87699773"
+										},
+										{
+											"key": "quantidadeTotal",
+											"value": "86889108"
+										},
+										{
+											"key": "idUsuario",
+											"value": "sit eiusmod pariatur non"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"quantidade\": 1,\n\t\"carrinhos\": [\n\t\t{\n\t\t\t\"produtos\": [\n\t\t\t\t{\n\t\t\t\t\t\"idProduto\": \"irure consectetur Duis\",\n\t\t\t\t\t\"quantidade\": 17450114,\n\t\t\t\t\t\"precoUnitario\": -90302390\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"idProduto\": \"eu\",\n\t\t\t\t\t\"quantidade\": 52968547,\n\t\t\t\t\t\"precoUnitario\": -56815971\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"precoTotal\": 10950,\n\t\t\t\"quantidadeTotal\": 3,\n\t\t\t\"idUsuario\": \"oUb7aGkMtSEPf6BZ\",\n\t\t\t\"_id\": \"aFOUqntef4iaOwWfg\"\n\t\t},\n\t\t{\n\t\t\t\"produtos\": [\n\t\t\t\t{\n\t\t\t\t\t\"idProduto\": \"ea\",\n\t\t\t\t\t\"quantidade\": -60537670,\n\t\t\t\t\t\"precoUnitario\": -40168692\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"idProduto\": \"proident ea in consequat\",\n\t\t\t\t\t\"quantidade\": 3694253,\n\t\t\t\t\t\"precoUnitario\": 49289941\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"precoTotal\": 10950,\n\t\t\t\"quantidadeTotal\": 3,\n\t\t\t\"idUsuario\": \"oUb7aGkMtSEPf6BZ\",\n\t\t\t\"_id\": \"aFOUqntef4iaOwWfg\"\n\t\t}\n\t]\n}"
+						}
+					]
+				},
+				{
+					"name": "Cadastrar carrinho",
+					"id": "98f3eb59-fbd5-44f9-8b0e-1fbf53e0711c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"produtos\": {\n\t\t\"idProduto\": \"ex veniam\",\n\t\t\"quantidade\": -19570862\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/carrinhos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carrinhos"
+							]
+						},
+						"description": "O carrinho é vinculado ao usuário do token enviado no header `Authorization`, sendo possível cadastrar apenas 1 carrinho por usuário.\nAo cadastrar carrinho com sucesso é feita a redução da quantidade no cadastro de cada produto inserido no carrinho.\n"
+					},
+					"response": [
+						{
+							"id": "72e08ea7-1176-434a-bbdd-4839f293f665",
+							"name": "Cadastro com sucesso",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"produtos\": {\n\t\t\"idProduto\": \"ex veniam\",\n\t\t\"quantidade\": -19570862\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Cadastro realizado com sucesso\",\n\t\"_id\": \"jogfODIlXsqxNFS2\"\n}"
+						},
+						{
+							"id": "879f6421-72e2-4a97-b2ea-817eaae9971d",
+							"name": "Algo deu errado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"produtos\": {\n\t\t\"idProduto\": \"ex veniam\",\n\t\t\"quantidade\": -19570862\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Não é permitido possuir produto duplicado | Não é permitido ter mais de 1 carrinho | Produto não encontrado | Produto não possui quantidade suficiente\"\n}"
+						},
+						{
+							"id": "d9dee906-a8c0-4673-aba2-2cdc85431d2f",
+							"name": "Token ausente, inválido ou expirado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"produtos\": {\n\t\t\"idProduto\": \"ex veniam\",\n\t\t\"quantidade\": -19570862\n\t}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar carrinho por ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6f1e066-950b-4d05-bfc6-ba217f22b639",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b2d62c66-50b7-405a-a157-e86e96764916",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/carrinhos/:_id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carrinhos",
+								":_id"
+							],
+							"variable": [
+								{
+									"id": "a37f2b33-0a4b-45c0-8ebc-e28f225a6803",
+									"key": "_id",
+									"value": "qbMqntef4iTOwWfg",
+									"description": "(Required) ID do carrinho"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "e5fb8d50-aed4-4790-b742-0e5eb01e18ec",
+							"name": "Carrinho encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "qbMqntef4iTOwWfg",
+											"description": "(Required) ID do carrinho"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"produtos\": [\n\t\t{\n\t\t\t\"idProduto\": \"aliquip elit id eu\",\n\t\t\t\"quantidade\": -84829778,\n\t\t\t\"precoUnitario\": 76251640\n\t\t},\n\t\t{\n\t\t\t\"idProduto\": \"et\",\n\t\t\t\"quantidade\": -82308980,\n\t\t\t\"precoUnitario\": 41657309\n\t\t}\n\t],\n\t\"precoTotal\": 6180,\n\t\"quantidadeTotal\": 3,\n\t\"idUsuario\": \"oUb7aGkMtSEPf6BZ\",\n\t\"_id\": \"qbMqntef4iTOwWfg\"\n}"
+						},
+						{
+							"id": "15e13b70-ac86-4663-bcb5-9356d0263d2d",
+							"name": "Carrinho não encontrado",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/:_id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										":_id"
+									],
+									"variable": [
+										{
+											"key": "_id",
+											"value": "qbMqntef4iTOwWfg",
+											"description": "(Required) ID do carrinho"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Carrinho não encontrado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Excluir carrinho",
+					"id": "d019b35e-ec5d-4c51-9c94-a72241ba417d",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/carrinhos/concluir-compra",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carrinhos",
+								"concluir-compra"
+							]
+						},
+						"description": "Ao concluir uma compra o carrinho é excluído.\nO carrinho excluído será o vinculado ao usuário do `token` utilizado.\n"
+					},
+					"response": [
+						{
+							"id": "c217f0ce-3d95-47c1-8e68-a0c1712d6928",
+							"name": "Registro excluído com sucesso | Não foi encontrado carrinho para esse usuário",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/concluir-compra",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"concluir-compra"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Registro excluído com sucesso | Não foi encontrado carrinho para esse usuário\"\n}"
+						},
+						{
+							"id": "e9c2f507-023c-4f34-94c4-b3539cdbe175",
+							"name": "Token ausente, inválido ou expirado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/concluir-compra",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"concluir-compra"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Excluir carrinho e retornar produtos para estoque",
+					"id": "7659516e-85f5-4934-b348-81078607c22f",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "Authorization",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "<API Key>",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/carrinhos/cancelar-compra",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"carrinhos",
+								"cancelar-compra"
+							]
+						},
+						"description": "Ao cancelar uma compra o carrinho é excluído e o estoque dos produtos desse carrinho é reabastecido.\nO carrinho excluído será o vinculado ao usuário do `token` utilizado.\n"
+					},
+					"response": [
+						{
+							"id": "aa04a788-02f3-464a-9ca6-8c765bb56274",
+							"name": "Registro excluído com sucesso | Não foi encontrado carrinho para esse usuário",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/cancelar-compra",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"cancelar-compra"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Registro excluído com sucesso | Não foi encontrado carrinho para esse usuário\"\n}"
+						},
+						{
+							"id": "c2c426ea-31ba-42e3-bc81-8b9927eb35e2",
+							"name": "Token ausente, inválido ou expirado",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: apikey",
+										"key": "Authorization",
+										"value": "<API Key>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/carrinhos/cancelar-compra",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"carrinhos",
+										"cancelar-compra"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n\t\"message\": \"Token de acesso ausente, inválido, expirado ou usuário do token não existe mais\"\n}"
+						}
+					]
+				}
+			],
+			"id": "83998456-934d-4c7d-8991-0d16ad300a3c",
+			"description": "Consulte os carrinhos cadastrados, faça um para o seu usuário e, no final, desista da compra pois estava só dando uma olhadinha"
+		}
+	],
+	"variable": [
+		{
+			"id": "85f843ab-6562-40f0-8096-cb15930250aa",
+			"key": "baseUrl",
+			"value": "//localhost:3000",
+			"type": "string"
+		}
+	]
+}
